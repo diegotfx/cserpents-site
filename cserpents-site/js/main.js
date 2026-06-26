@@ -1,52 +1,42 @@
-// Mobile menu toggle
 function toggleMenu() {
-  const nav = document.getElementById('mobileNav');
-  nav.classList.toggle('open');
+  document.getElementById('mobileNav').classList.toggle('open');
 }
 
-// FAQ accordion
 document.addEventListener('DOMContentLoaded', function() {
+
+  // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      const answer = this.nextElementSibling;
-      const isOpen = answer.classList.contains('open');
-      // Close all
-      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-      document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
-      // Open clicked if it wasn't open
-      if (!isOpen) {
-        answer.classList.add('open');
-        this.classList.add('open');
-      }
+      var answer = this.nextElementSibling;
+      var isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(function(a){ a.classList.remove('open'); });
+      document.querySelectorAll('.faq-q').forEach(function(q){ q.classList.remove('open'); });
+      if (!isOpen) { answer.classList.add('open'); this.classList.add('open'); }
     });
   });
 
-  // Filter buttons (category pages)
+  // Product filters
   document.querySelectorAll('.filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
       this.classList.add('active');
-      const filter = this.getAttribute('data-filter');
+      var filter = this.getAttribute('data-filter');
       document.querySelectorAll('.product-card[data-category]').forEach(function(card) {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? '' : 'none';
       });
     });
   });
 
   // Contact form
-  const form = document.getElementById('contactForm');
+  var form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
+      var btn = form.querySelector('button[type="submit"]');
       btn.textContent = 'Message Sent!';
-      btn.style.background = '#4CAF50';
+      btn.style.background = '#5a9a00';
       btn.disabled = true;
-      setTimeout(() => {
+      setTimeout(function() {
         btn.textContent = 'Send Message';
         btn.style.background = '';
         btn.disabled = false;
@@ -54,4 +44,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 3000);
     });
   }
+
 });
