@@ -1,39 +1,58 @@
+// Mobile menu
 function toggleMenu() {
   document.getElementById('mobileNav').classList.toggle('open');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  // FAQ accordion
+  // ── SCROLL ANIMATIONS ──
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // ── FAQ ACCORDION ──
   document.querySelectorAll('.faq-q').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var answer = this.nextElementSibling;
       var isOpen = answer.classList.contains('open');
-      document.querySelectorAll('.faq-a').forEach(function(a){ a.classList.remove('open'); });
-      document.querySelectorAll('.faq-q').forEach(function(q){ q.classList.remove('open'); });
+      document.querySelectorAll('.faq-a').forEach(function(a) { a.classList.remove('open'); });
+      document.querySelectorAll('.faq-q').forEach(function(q) { q.classList.remove('open'); });
       if (!isOpen) { answer.classList.add('open'); this.classList.add('open'); }
     });
   });
 
-  // Product filters
+  // ── PRODUCT FILTERS ──
   document.querySelectorAll('.filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
       var filter = this.getAttribute('data-filter');
       document.querySelectorAll('.product-card[data-category]').forEach(function(card) {
-        card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? '' : 'none';
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.style.display = '';
+          card.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
   });
 
-  // Contact form
+  // ── CONTACT FORM ──
   var form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Message Sent!';
+      btn.textContent = '✓ Message Sent!';
       btn.style.background = '#5a9a00';
       btn.disabled = true;
       setTimeout(function() {
@@ -45,4 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // ── ACTIVE NAV LINK ──
+  var current = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(function(a) {
+    if (a.getAttribute('href') === current) a.classList.add('active');
+  });
+
 });
+
+// CSS for filter fade-in
+var style = document.createElement('style');
+style.textContent = '@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }';
+document.head.appendChild(style);
