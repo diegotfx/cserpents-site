@@ -7,9 +7,8 @@
    scrolled down the page (0% at top, 100% at bottom), looping the track a
    few times on long pages so the motion stays visible throughout.
 
-   Subtle by design: low opacity, pointer-events disabled (never blocks
-   clicks/links), skipped entirely on narrow screens and whenever the
-   visitor's OS has "reduce motion" turned on.
+   Skipped entirely on narrow screens and whenever the visitor's OS has
+   "reduce motion" turned on. Pointer-events disabled — never blocks clicks.
 
    Add this ONE line before </body> on every page:
      <script src="js/snake-scroll.js" defer></script>
@@ -61,26 +60,26 @@
       "position:fixed",
       "top:0",
       "right:0",
-      "width:64px",
+      "width:110px",
       "height:100vh",
       "pointer-events:none",
       "z-index:4",
-      "opacity:0.38",
+      "opacity:0.8",
       "mix-blend-mode:normal"
     ].join(";");
 
     var svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("viewBox", "0 0 64 400");
-    svg.setAttribute("width", "64");
+    svg.setAttribute("viewBox", "0 0 110 400");
+    svg.setAttribute("width", "110");
     svg.setAttribute("height", "100%");
     svg.setAttribute("preserveAspectRatio", "none");
 
     // winding vertical S-track the snake will follow, looped visually
     var trackData =
-      "M32,5 C6,45 58,80 32,120 " +
-      "C6,160 58,200 32,250 " +
-      "C6,300 58,340 32,390 " +
-      "C6,440 58,470 32,520";
+      "M55,10 C10,55 100,95 55,140 " +
+      "C10,185 100,225 55,270 " +
+      "C10,315 100,355 55,400 " +
+      "C10,445 100,480 55,540";
     var track = document.createElementNS(svgNS, "path");
     track.setAttribute("d", trackData);
     track.setAttribute("id", "snakeTrack");
@@ -88,14 +87,14 @@
     track.setAttribute("stroke", "none");
     svg.appendChild(track);
 
-    // simple tapered snake silhouette (wide "head" end tapering to a thin tail)
-    // reads reasonably at any rotation, so exact autoRotate alignment isn't fussy
+    // simple tapered snake silhouette (wide "head" end tapering to a thin tail),
+    // now with a dark outline so it reads clearly against any background
     var snake = document.createElementNS(svgNS, "g");
     snake.setAttribute("id", "snakeBody");
     snake.innerHTML =
-      '<path d="M0,-13 C5,-13 7,-7 6,-2 C5,4 2,9 0,13 ' +
-      'C-2,9 -5,4 -6,-2 C-7,-7 -5,-13 0,-13 Z" fill="#B1CA07"/>' +
-      '<circle cx="2" cy="-9" r="1" fill="#12150a"/>';
+      '<path d="M0,-30 C11,-30 16,-16 14,-4 C11,9 4,20 0,30 ' +
+      'C-4,20 -11,9 -14,-4 C-16,-16 -11,-30 0,-30 Z" fill="#B1CA07" stroke="#12150a" stroke-width="1.5"/>' +
+      '<circle cx="4.5" cy="-20" r="2.4" fill="#12150a"/>';
     svg.appendChild(snake);
 
     wrap.appendChild(svg);
