@@ -7,8 +7,9 @@
    scrolled down the page (0% at top, 100% at bottom), looping the track a
    few times on long pages so the motion stays visible throughout.
 
-   Skipped entirely on narrow screens and whenever the visitor's OS has
-   "reduce motion" turned on. Pointer-events disabled — never blocks clicks.
+   Subtle by design: low opacity, pointer-events disabled (never blocks
+   clicks/links), skipped entirely on narrow screens and whenever the
+   visitor's OS has "reduce motion" turned on.
 
    Add this ONE line before </body> on every page:
      <script src="js/snake-scroll.js" defer></script>
@@ -87,14 +88,21 @@
     track.setAttribute("stroke", "none");
     svg.appendChild(track);
 
-    // simple tapered snake silhouette (wide "head" end tapering to a thin tail),
-    // now with a dark outline so it reads clearly against any background
+    // wavy snake body drawn as a single continuous stroked path (like a
+    // tube), plus a distinct round head, two eyes, and a small forked
+    // tongue — reads clearly as a snake at any rotation, not a blob/leaf
     var snake = document.createElementNS(svgNS, "g");
     snake.setAttribute("id", "snakeBody");
+    var bodyWave =
+      "M0,-40 C9,-34 -9,-26 0,-20 C9,-14 -9,-6 0,0 " +
+      "C9,6 -9,14 0,20 C9,26 -9,34 0,40";
     snake.innerHTML =
-      '<path d="M0,-30 C11,-30 16,-16 14,-4 C11,9 4,20 0,30 ' +
-      'C-4,20 -11,9 -14,-4 C-16,-16 -11,-30 0,-30 Z" fill="#B1CA07" stroke="#12150a" stroke-width="1.5"/>' +
-      '<circle cx="4.5" cy="-20" r="2.4" fill="#12150a"/>';
+      '<path d="' + bodyWave + '" fill="none" stroke="#12150a" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="' + bodyWave + '" fill="none" stroke="#B1CA07" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="0" cy="-40" r="7.8" fill="#B1CA07" stroke="#12150a" stroke-width="1.6"/>' +
+      '<circle cx="-2.7" cy="-42.6" r="1.4" fill="#12150a"/>' +
+      '<circle cx="2.7" cy="-42.6" r="1.4" fill="#12150a"/>' +
+      '<path d="M0,-47.8 L-2.3,-52 M0,-47.8 L2.3,-52" stroke="#DC3F39" stroke-width="1.3" stroke-linecap="round"/>';
     svg.appendChild(snake);
 
     wrap.appendChild(svg);
