@@ -328,3 +328,134 @@ body.rd {
   .rd .testi-grid { grid-template-columns: 1fr; }
   .rd .section { padding: 64px 0; }
 }
+
+/* ==========================================================================
+   INNER-PAGE COMPONENTS
+   (rack-systems, incubators, accessories, about, contact, faq, shows)
+   ========================================================================== */
+
+/* ── inner page hero (shorter than home hero) ── */
+.rd .page-hero { padding: 64px 0 56px; }
+.rd .page-hero h1 {
+  font-size: clamp(32px, 4.2vw, 52px);
+  color: var(--ivory);
+  margin-bottom: 14px;
+}
+.rd .page-hero p {
+  color: rgba(255,252,232,0.72);
+  font-size: 16px;
+  max-width: 620px;
+}
+
+/* ── generic label (legacy alias for eyebrow) ── */
+.rd .label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--acid); margin-bottom: 14px;
+}
+.rd .label::before { content: ''; width: 22px; height: 2px; background: var(--acid); display: inline-block; }
+.rd .page-hero .label { color: var(--acid); }
+
+/* ── full utility product grid (accessories/incubators/rack-systems) ── */
+.rd .product-grid-full { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.rd .product-card {
+  background: var(--white); border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(49,58,26,0.1); display: block; text-decoration: none; color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.rd .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(49,58,26,0.14); border-color: var(--acid); }
+.rd .product-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.rd .product-info { padding: 16px 18px 20px; }
+.rd .product-info h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+.rd .product-price { font-family: var(--font-display); color: var(--deep); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.rd .product-info p { font-size: 12.5px; color: #6b6f5c; margin-bottom: 10px; }
+
+/* ── order form toggle (rack-systems product cards) ── */
+.rd .product-order-link {
+  background: none; border: none; padding: 0; margin-top: 4px;
+  font-family: var(--font-display); font-size: 12.5px; font-weight: 700;
+  color: var(--deep); cursor: pointer; text-decoration: underline; text-underline-offset: 2px;
+}
+.rd .product-order-link:hover { color: var(--acid); }
+.rd .order-form { display: none; padding: 14px 0 4px; }
+.rd .order-form.open { display: block; animation: fadeIn 0.3s ease; }
+.rd .order-form form { display: flex; flex-direction: column; gap: 8px; }
+.rd .order-form input, .rd .order-form textarea {
+  font-family: var(--font-body); font-size: 13px; padding: 9px 12px;
+  border: 1px solid rgba(49,58,26,0.18); border-radius: 8px; background: var(--ivory);
+  color: var(--ink); resize: vertical;
+}
+.rd .order-form input:focus, .rd .order-form textarea:focus { outline: none; border-color: var(--acid); }
+.rd .order-btn-sm {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  background: var(--deep); color: var(--ivory); border: none; border-radius: 8px;
+  padding: 10px 16px; cursor: pointer; transition: background 0.15s;
+}
+.rd .order-btn-sm:hover { background: var(--ink); }
+
+/* ── filter bar (rack-systems) ── */
+.rd .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+.rd .filter-btn {
+  font-family: var(--font-display); font-size: 13px; font-weight: 600;
+  padding: 9px 20px; border-radius: 999px; border: 2px solid var(--deep);
+  background: transparent; color: var(--deep); cursor: pointer; transition: all 0.15s ease;
+}
+.rd .filter-btn:hover { border-color: var(--acid); }
+.rd .filter-btn.active { background: var(--deep); color: var(--ivory); }
+
+/* ── info box callout (incubators, faq) ── */
+.rd .info-box {
+  background: rgba(177,202,7,0.16); border: 1px solid rgba(177,202,7,0.4);
+  border-radius: 14px; padding: 20px 24px; margin-top: 30px; max-width: 640px;
+}
+.rd .info-box h4 { font-size: 15px; margin-bottom: 8px; color: var(--deep); }
+.rd .info-box p { font-size: 14px; color: #3a3f2c; line-height: 1.6; }
+.rd .info-box a { color: var(--deep); font-weight: 700; text-decoration: underline; }
+
+/* ── about page ── */
+.rd .about-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start; }
+.rd .about-inner p { color: #4c5240; font-size: 15.5px; margin-bottom: 14px; max-width: 540px; }
+.rd .values-list { display: flex; flex-direction: column; gap: 16px; }
+.rd .value-item {
+  background: var(--white); border-left: 4px solid var(--acid);
+  border-radius: 10px; padding: 18px 22px; box-shadow: 0 4px 14px rgba(49,58,26,0.06);
+}
+.rd .value-item h4 { font-size: 15.5px; margin-bottom: 6px; color: var(--deep); }
+.rd .value-item p { font-size: 13.5px; color: #5b604a; margin: 0; }
+
+/* ── contact page ── */
+.rd .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; }
+.rd .form-group { margin-bottom: 16px; }
+.rd .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--deep); margin-bottom: 6px; }
+.rd .form-group input, .rd .form-group textarea {
+  width: 100%; font-family: var(--font-body); font-size: 14.5px; padding: 12px 14px;
+  border: 1px solid rgba(49,58,26,0.2); border-radius: 10px; background: var(--white); color: var(--ink);
+}
+.rd .form-group textarea { min-height: 120px; resize: vertical; }
+.rd .form-group input:focus, .rd .form-group textarea:focus { outline: none; border-color: var(--acid); box-shadow: 0 0 0 3px rgba(177,202,7,0.2); }
+.rd .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; font-size: 14.5px; }
+.rd .contact-detail span:first-child { font-size: 20px; }
+.rd .contact-detail strong { display: block; color: var(--deep); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+.rd .contact-detail a { color: var(--ink); }
+.rd .contact-detail a:hover { color: var(--acid); }
+.rd .social-btn-row { display: flex; gap: 10px; margin-top: 6px; }
+
+/* ── FAQ accordion ── */
+.rd .faq-list { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid rgba(49,58,26,0.12); }
+.rd .faq-item { background: var(--white); border-bottom: 1px solid rgba(49,58,26,0.08); }
+.rd .faq-item:last-child { border-bottom: none; }
+.rd .faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 22px; font-weight: 700; font-size: 15px; cursor: pointer; user-select: none;
+}
+.rd .faq-icon { font-size: 20px; color: var(--acid); transition: transform 0.2s ease; }
+.rd .faq-q.open .faq-icon { transform: rotate(45deg); }
+.rd .faq-a { display: none; padding: 0 22px 20px; }
+.rd .faq-a.open { display: block; animation: fadeIn 0.25s ease; }
+.rd .faq-a p { font-size: 14px; color: #4c5240; line-height: 1.65; }
+
+/* ── responsive: inner pages ── */
+@media (max-width: 860px) {
+  .rd .about-inner { grid-template-columns: 1fr; }
+  .rd .contact-grid { grid-template-columns: 1fr; }
+}
