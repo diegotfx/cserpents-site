@@ -6,6 +6,64 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── official brand fonts (self-hosted, provided by client) ── */
+@font-face {
+  font-family: 'Mary Goods';
+  src: url('fonts/MaryGoods-Regular.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Extralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Extrabold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Juturu';
+  src: url('fonts/Juturu-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --deep:    #313A1A;
   --deep-2:  #262d15;
@@ -18,8 +76,8 @@
   --white:   #ffffff;
   --ink:     #12150a;
 
-  --font-display: 'Baloo 2', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-display: 'Mary Goods', 'Juturu', system-ui, sans-serif;
+  --font-body: 'Juturu', -apple-system, sans-serif;
 
   --container: 1240px;
 }
@@ -74,8 +132,10 @@ body.rd {
   background-color: var(--deep);
   background-image:
     radial-gradient(circle at 15% 20%, rgba(177,202,7,0.10), transparent 45%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='2'%3E%3Cpath d='M20 70c0-16 13-29 29-29s29 13 29 29-13 29-29 29'/%3E%3Cpath d='M110 30c11 0 20 9 20 20s-9 20-20 20'/%3E%3Ccircle cx='110' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: auto, 140px 140px;
+    url("images/scale-pattern.jpg");
+  background-blend-mode: normal, multiply;
+  background-size: auto, 340px 340px;
+  background-repeat: repeat, repeat;
 }
 
 /* ── coil badge, the recurring signature mark ── */
@@ -130,6 +190,19 @@ body.rd {
 .rd .brand-name { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--ivory); }
 .rd .brand-name .dot { color: var(--acid); }
 .rd .brand-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--acid); margin-top: 1px; }
+
+/* ── official horizontal logo lockup (single approved asset, never rebuilt from text) ── */
+.rd .logo-chip {
+  background: var(--ivory);
+  border-radius: 10px;
+  padding: 7px 14px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+.rd .logo-chip img { height: 34px; width: auto; display: block; }
+.rd .site-footer .logo-chip { padding: 10px 18px; }
+.rd .site-footer .logo-chip img { height: 42px; }
 
 .rd .main-nav { display: flex; gap: 30px; align-items: center; }
 .rd .main-nav a {
@@ -327,6 +400,8 @@ body.rd {
   .rd .footer-inner { grid-template-columns: 1fr; }
   .rd .testi-grid { grid-template-columns: 1fr; }
   .rd .section { padding: 64px 0; }
+  .rd .show-item { flex-wrap: wrap; gap: 8px; }
+  .rd .show-date { white-space: normal; }
 }
 
 /* ==========================================================================
@@ -381,7 +456,7 @@ body.rd {
 .rd .order-form.open { display: block; animation: fadeIn 0.3s ease; }
 .rd .order-form form { display: flex; flex-direction: column; gap: 8px; }
 .rd .order-form input, .rd .order-form textarea {
-  font-family: var(--font-body); font-size: 13px; padding: 9px 12px;
+  width: 100%; font-family: var(--font-body); font-size: 13px; padding: 9px 12px;
   border: 1px solid rgba(49,58,26,0.18); border-radius: 8px; background: var(--ivory);
   color: var(--ink); resize: vertical;
 }
