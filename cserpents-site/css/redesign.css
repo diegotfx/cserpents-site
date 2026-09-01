@@ -400,8 +400,8 @@ body.rd {
   .rd .footer-inner { grid-template-columns: 1fr; }
   .rd .testi-grid { grid-template-columns: 1fr; }
   .rd .section { padding: 64px 0; }
-  .rd .show-item { flex-wrap: wrap; gap: 8px; }
-  .rd .show-date { white-space: normal; }
+  .rd .show-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .rd .show-date { white-space: normal; align-self: flex-start; }
 }
 
 /* ==========================================================================
