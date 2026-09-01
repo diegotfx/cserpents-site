@@ -260,6 +260,19 @@ body.rd {
   width: 74px; height: 74px; z-index: 2;
   animation: spin 26s linear infinite;
 }
+/* ── floating social squares under the hero visual ── */
+.rd .social-float-row { display: flex; gap: 16px; justify-content: center; margin-top: 22px; }
+.rd .social-float {
+  width: 58px; height: 58px;
+  background: var(--ivory);
+  color: var(--deep);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 26px rgba(18,21,10,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.rd .social-float svg { width: 26px; height: 26px; }
+.rd .social-float:hover { transform: translateY(-5px); background: var(--acid); color: var(--ink); box-shadow: 0 16px 32px rgba(18,21,10,0.45); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── category cards ── */
